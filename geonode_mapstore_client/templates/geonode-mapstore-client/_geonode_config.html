@@ -81,6 +81,16 @@
     {% endautoescape %}
 </script>
 {% block override_local_config %}
+<script>
+    window.__GEONODE_CONFIG__.overrideLocalConfig = function(localConfig, _) {
+        // list of available keys under the plugins property
+        // the key should match the name of the template where the configuration is used
+        // "map_embed","layer_embed","layer_view","layer_style_edit","layer_data_edit","map_view","map_edit","geostory","geostory_embed"
+        localConfig.plugins.map_edit.push({ "name": "SearchServicesConfig" });
+
+        return localConfig;
+    };
+</script>
 {% comment %}
 <script>
     window.__GEONODE_CONFIG__.overrideLocalConfig = function(localConfig, _) {
